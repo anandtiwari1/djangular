@@ -3,7 +3,7 @@
  */
 (function () {
         'use strict';
-        angular.module('scrumboard.demo', [])
+        angular.module('scrumboard.demo', ['ngRoute'])
             .controller(
                 'ScrumboardController',
                 [
@@ -25,6 +25,11 @@
             }, function () {
                 alert('Unable to save card.')
             });
+        };
+
+        $scope.login = function () {
+            $http.post('/auth_api/login/',
+                {username: 'anand', password: 'anand123'});
         };
 
         $scope.data = [];
