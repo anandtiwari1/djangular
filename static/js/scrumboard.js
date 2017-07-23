@@ -1,5 +1,6 @@
 /**
  * Created by anand.tiwari on 7/9/17.
+ * django root admin: anand/anand123
  */
 (function () {
         'use strict';
@@ -9,11 +10,12 @@
                 [
                     '$scope',
                     '$http',
+                    '$location',
                     ScrumboardController
                 ]
             );
 
-    function ScrumboardController($scope, $http) {
+    function ScrumboardController($scope, $http, $location) {
         $scope.add = function (list, title) {
             var card = {
                 list: list.id,
@@ -27,10 +29,12 @@
             });
         };
 
-        $scope.login = function () {
-            $http.post('/auth_api/login/',
-                {username: 'anand', password: 'anand123'});
-        };
+        $scope.logout = function () {
+            $http.get('/auth_api/logout/')
+                .then(function () {
+                    $location.url('/login');
+                });
+        }
 
         $scope.data = [];
 
